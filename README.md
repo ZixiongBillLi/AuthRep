@@ -24,10 +24,8 @@ This project does not initially study autonomous agents, real-world exploitation
 
 ## Status
 
-Project initialized.
-
-Observation: Highly sensitive actions such as credential access may introduce a separate safety-policy confound even when authorization is explicit. Keep such cases for later stress testing rather than the initial clean pilot set.
-
-### Compute strategy
-
-Develop and validate the experimental pipeline locally on a small open-weight model (approximately 3B–4B, preferably BF16). Scale the main experiments to a 7B–8B model locally using memory-efficient inference if necessary. Consider RIT Research Computing only if model size, dataset scale, or intervention experiments exceed local resources.
+- Constructed the initial explicit-authorization pilot dataset.
+- Implemented prompt generation and raw behavioral data collection.
+- Completed the first Qwen3-4B behavioral pilot on 10 explicit prompts.
+- Calibrated `max_new_tokens=1024` for the current explicit/Qwen3-4B setup.
+- Next: define behavioral annotation criteria and inspect paired responses.
