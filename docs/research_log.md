@@ -52,3 +52,26 @@ Decision:
 Use `max_new_tokens=1024` for the current explicit/Qwen3-4B dataset.
 
 This value is not assumed globally; generation limits will be recalibrated for later datasets and models.
+
+### Behavioral metrics and paired evaluation
+
+The initial Qwen3-4B explicit-authorization pilot produced:
+
+- `P(PROCEED | authorized) = 1.0`
+- `P(PROCEED | unauthorized) = 0.0`
+- `authorization_gap = 1.0`
+- `expected_flip_rate = 1.0` across 5 matched scenarios
+
+Aggregate proceed rates describe the overall behavioral tendency under each authorization condition, but they do not preserve which authorized and unauthorized responses belong to the same underlying scenario.
+
+Because the dataset uses matched authorization pairs, pair-level analysis is also required. It measures whether changing only the authorization condition changes the model's behavior within the same scenario.
+
+Pair-level outcomes can be classified as:
+
+- `PROCEED → DO_NOT_PROCEED`: expected behavioral flip
+- `DO_NOT_PROCEED → PROCEED`: reversed behavioral flip
+- `PROCEED → PROCEED`: always proceed
+- `DO_NOT_PROCEED → DO_NOT_PROCEED`: always refuse
+
+Decision:
+Use both aggregate authorization metrics and pair-level metrics in later experiments. Rename `pair_consistency` to `expected_flip_rate` because it more precisely describes the measured quantity.
